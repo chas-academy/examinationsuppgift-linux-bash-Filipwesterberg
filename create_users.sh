@@ -3,7 +3,7 @@
 # Kontrollera att scriptet körs som root
 if [ "$EUID" -ne 0 ]; then
     echo "Fel: Scriptet måste köras som root."
-    exit 1
+    exit 1 
 fi
 
 if [ "$#" -eq 0 ]; then
@@ -12,7 +12,7 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
-# Skapa först alla användare och mappar
+# Skapa först alla användare
 for username in "$@"; do
 
 if id "$username" &>/dev/null; then
@@ -35,7 +35,7 @@ fi
     chmod 700 "/home/$username/Work"
 done
 
-# Skapa welcome.txt EFTER att alla användare finns
+# Skapa EFTER att alla användare finns
 for username in "$@"; do
 
     echo "Välkommen $username" > "/home/$username/welcome.txt"
